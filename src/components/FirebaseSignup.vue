@@ -98,6 +98,7 @@ const onReset = () => {
           label="이메일"
           type="email"
           :rules="emailRules"
+          autocomplete="username"
         />
         <q-input
           v-model="password"

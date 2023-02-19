@@ -57,6 +57,7 @@ const onReset = () => {
           label="이메일"
           type="email"
           :rules="emailRules"
+          autocomplete="username"
         />
         <div class="col-12 row wrap q-my-sm">
           <div class="col-6 q-pr-sm">

@@ -127,6 +127,7 @@ const signInWithGoogle = async () => {
           label="이메일"
           type="email"
           :rules="emailRules"
+          autocomplete="username"
         />
         <q-input
           v-model="password"
@@ -135,6 +136,7 @@ const signInWithGoogle = async () => {
           label="암호"
           type="password"
           :rules="passwordRules"
+          autocomplete="current-password"
         />
         <div class="col-12 row wrap q-my-sm">
           <div class="col-6 q-pr-sm">
