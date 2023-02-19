@@ -6,8 +6,9 @@ import {
   signInWithPopup,
   signOut,
 } from 'firebase/auth';
+import { doc, getDoc, setDoc, serverTimestamp } from 'firebase/firestore';
 
-import { auth } from 'src/firebase';
+import { auth, db } from 'src/firebase';
 
 const email = ref('');
 const emailRef = ref(null);
@@ -23,6 +24,23 @@ const passwordRules = [
   (val) => val.length >= 6 || '암호는 6자 이상이어야 합니다.',
 ];
 
+const checkAndAddUser = async (uid, email, name, role) => {
+  // 사용자 문서에 대한 참조
+  const userRef = doc(db, 'Users', uid);
+  // 사용자 문서를 가져옵니다
+  const userSnapshot = await getDoc(userRef);
+
+  // 사용자 문서가 있는지 확인하십시오
+  if (!userSnapshot.exists()) {
+    // 사용자 문서가 존재하지 않으면 추가하십시오.
+    await setDoc(userRef, {
+      email: email,
+      name: name,
+      role: role,
+      createdAt: serverTimestamp(),
+    });
+  }
+};
 const onSubmit = async () => {
   if (emailRef.value.hasError || passwordRef.value.hasError) {
     return;
@@ -36,6 +54,9 @@ const onSubmit = async () => {
         signOut(auth);
         return;
       }
+      // 이용자 정보를 Firestore에 저장
+      checkAndAddUser(user.uid, user.email, user.displayName, 'user');
+
       location.href = '/';
     })
     .catch((error) => {
@@ -65,18 +86,30 @@ const onReset = () => {
 
 const signInWithGoogle = async () => {
   const provider = new GoogleAuthProvider();
-  await signInWithPopup(auth, provider).catch((error) => {
-    switch (error.code) {
-      case 'auth/account-exists-with-different-credential':
-        alert('이미 다른 인증 방법으로 가입한 계정입니다.');
-        break;
-      default:
-        alert(`로그인에 실패했습니다. Error: ${error.message}`);
-        break;
-    }
-  });
-  // router.push('/');
-  location.href = '/';
+  await signInWithPopup(auth, provider)
+    .then(async (result) => {
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      // const credential = GoogleAuthProvider.credentialFromResult(result);
+      // const token = credential.accessToken;
+      // The signed-in user info.
+      const user = result.user;
+
+      // 이용자 정보를 Firestore에 저장
+      await checkAndAddUser(user.uid, user.email, user.displayName, 'user');
+
+      // router.push('/');
+      location.href = '/';
+    })
+    .catch((error) => {
+      switch (error.code) {
+        case 'auth/account-exists-with-different-credential':
+          alert('이미 다른 인증 방법으로 가입한 계정입니다.');
+          break;
+        default:
+          alert(`로그인에 실패했습니다. Error: ${error.message}`);
+          break;
+      }
+    });
 };
 </script>
 

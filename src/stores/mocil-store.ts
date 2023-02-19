@@ -1,10 +1,11 @@
 import { defineStore } from 'pinia';
-import { User,signOut } from 'firebase/auth';
+import { User, signOut } from 'firebase/auth';
 import { auth } from 'src/firebase';
 
 export const useLoginStore = defineStore('login', {
   state: () => ({
     loggedInUser: null as User | null,
+    role: null as string | null,
   }),
   getters: {
     isLoggedIn: (state) => !!state.loggedInUser,
@@ -17,7 +18,6 @@ export const useLoginStore = defineStore('login', {
   },
   actions: {
     signOut() {
-      this.loggedInUser = null;
       signOut(auth);
       location.href = '/login';
     },

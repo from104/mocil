@@ -17,18 +17,17 @@ const loginStore = useLoginStore();
       <q-card-section>
         <q-list bordered>
           <q-item>
-            <q-item-section>
-              uid: {{ loginStore.loggedInUser?.uid }}
-            </q-item-section>
+            <q-item-section> uid: {{ loginStore.uid }} </q-item-section>
+          </q-item>
+          <q-item>
+            <q-item-section> email: {{ loginStore.email }} </q-item-section>
+          </q-item>
+          <q-item>
+            <q-item-section> name: {{ loginStore.userName }} </q-item-section>
           </q-item>
           <q-item>
             <q-item-section>
-              email: {{ loginStore.loggedInUser?.email }}
-            </q-item-section>
-          </q-item>
-          <q-item>
-            <q-item-section>
-              name: {{ loginStore.loggedInUser?.displayName }}
+              role: {{ loginStore.role }}
             </q-item-section>
           </q-item>
         </q-list>
