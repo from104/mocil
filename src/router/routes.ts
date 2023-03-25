@@ -8,9 +8,16 @@ const routes: RouteRecordRaw[] = [
       { path: '/', component: () => import('pages/NoticePage.vue') },
       { path: '/notice', component: () => import('pages/NoticePage.vue') },
       { path: '/login', component: () => import('pages/LoginPage.vue') },
-      { path: '/password-reset', component: () => import('pages/PasswordResetPage.vue') },
+      {
+        path: '/password-reset',
+        component: () => import('pages/PasswordResetPage.vue'),
+      },
       { path: '/signup', component: () => import('pages/SignupPage.vue') },
     ],
+  },
+  {
+    path: '/management/activity/calcOfAnnualLeave',
+    component: () => import('pages/management/activity/calcOfAnnualLeave.vue'),
   },
 
   // 로그인 페이지

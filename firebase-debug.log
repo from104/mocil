@@ -1,0 +1,23 @@
+[debug] [2023-03-06T20:49:20.383Z] ----------------------------------------------------------------------
+[debug] [2023-03-06T20:49:20.384Z] Command:       /usr/bin/node /usr/local/bin/firebase deploy
+[debug] [2023-03-06T20:49:20.385Z] CLI Version:   11.23.1
+[debug] [2023-03-06T20:49:20.385Z] Platform:      linux
+[debug] [2023-03-06T20:49:20.385Z] Node Version:  v16.19.1
+[debug] [2023-03-06T20:49:20.385Z] Time:          Tue Mar 07 2023 05:49:20 GMT+0900 (대한민국 표준시)
+[debug] [2023-03-06T20:49:20.386Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-03-06T20:49:20.441Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-03-06T20:49:20.442Z] > authorizing via signed-in user (from104@gmail.com)
+[debug] [2023-03-06T20:49:20.442Z] [iam] checking project mocil-d4984 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2023-03-06T20:49:20.443Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/mocil-d4984:testIamPermissions [none]
+[debug] [2023-03-06T20:49:20.444Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/mocil-d4984:testIamPermissions x-goog-quota-user=projects/mocil-d4984
+[debug] [2023-03-06T20:49:20.444Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/mocil-d4984:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-03-06T20:49:21.446Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/mocil-d4984:testIamPermissions 200
+[debug] [2023-03-06T20:49:21.446Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/mocil-d4984:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2023-03-06T20:49:21.448Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/mocil-d4984 [none]
+[debug] [2023-03-06T20:49:34.582Z] Failed to make request to https://firebase.googleapis.com/v1beta1/projects/mocil-d4984
+[debug] [2023-03-06T20:49:34.738Z] FirebaseError: Failed to make request to https://firebase.googleapis.com/v1beta1/projects/mocil-d4984
+    at RetryOperation._fn (/usr/local/share/.config/yarn/global/node_modules/firebase-tools/lib/apiv2.js:242:31)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+[error] 
+[error] Error: Failed to get Firebase project mocil-d4984. Please make sure the project exists and your account has permission to access it.

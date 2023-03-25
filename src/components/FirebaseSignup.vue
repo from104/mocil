@@ -11,13 +11,13 @@ const email = ref('');
 const emailRef = ref(null);
 const emailRules = [
   (val) => !!val || '이메일 주소를 넣으세요.',
-  (val) => /.+@.+\..+/.test(val) || '이메일 주소가 아닙니다.',
+  (val) => /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(val) || '이메일 주소가 아닙니다.',
 ];
 
 const password = ref('');
 const passwordRef = ref(null);
 const passwordRules = [
-  (val) => !!val || '암호를 넣으세요.',
+  (val) => !!val.trim() || '암호를 넣으세요.',
   (val) => val.length >= 6 || '암호는 6자 이상이어야 합니다.',
 ];
 

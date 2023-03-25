@@ -5,7 +5,7 @@ import EssentialLink, {
   EssentialLinkProps,
 } from 'components/EssentialLink.vue';
 
-import { useLoginStore  } from 'src/stores/mocil-store';
+import { useLoginStore } from 'src/stores/mocil-store';
 
 const loginStore = useLoginStore();
 
@@ -38,7 +38,12 @@ function toggleLeftDrawer() {
 
       <q-toolbar-title> 자립생활센터 관리 솔루션 </q-toolbar-title>
 
-      <q-btn label="Logout" color="secondary" @click="loginStore.signOut()" v-if="loginStore.isLoggedIn && loginStore.isEmailVerified"/>
+      <q-btn
+        label="Logout"
+        color="secondary"
+        @click="loginStore.signOut()"
+        v-if="loginStore.isLoggedIn && loginStore.isEmailVerified"
+      />
     </q-toolbar>
   </q-header>
   <q-drawer v-model="leftDrawerOpen" show-if-above bordered>
